@@ -31,15 +31,9 @@ p_1005 = Problem("1005", "a%/b", "Null", ["0.5초", "128MB"],
 listt = [p_1001,p_1002,p_1003,p_1004,p_1005]
 
 
-@app.route('/',methods=['POST'])
-def hello():
-    a = dict(request.get_json())
-    return str(a["Pnum"])
-
-
 @app.route('/p_info/', methods=['POST'])
 def P_info():
-    
+
     problem_number = request.get_json()["Pnum"] #1001
     return {
 	"Pnum" : listt[problem_number-1001].Pnum,
@@ -49,7 +43,6 @@ def P_info():
 	"Pdetail" : listt[problem_number-1001].Pdetail,
 	"Pinout" : listt[problem_number-1001].Pinout
 }
-
 
 
 @app.route('/result', methods=['POST'])
@@ -64,12 +57,3 @@ def result():
 
 if __name__ == '__main__': 
     app.run(debug=True) #코드 수정하면 바로바로 서버 restart 해줌
-
-# {
-#   "Pnum": 1005
-# }
-
-# {
-# 	"Pnum" : 1001,
-# 	"Result" : "T"
-# }
